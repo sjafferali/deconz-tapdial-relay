@@ -56,5 +56,4 @@ if __name__ == "__main__":
     # subscribe to sensors
     subscribe_to_sensors(router, SWITCH_MAP.keys())
 
-    while True:
-        time.sleep(60)
+    client.loop_forever()
