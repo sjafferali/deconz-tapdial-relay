@@ -33,7 +33,7 @@ def onChange(sensor, key_that_changed, oldval, newval):
     sensor_id = sensor.getId()
     entity_name = SWITCH_MAP[sensor_id]
     print_log(f"{entity_name}({sensor_id}) updated to {newval}")
-    client.publish(entity_name, payload=newval, qos=0, retain=False)
+    print(client.publish(entity_name, payload=newval, qos=0, retain=False))
 
 def subscribe_to_sensors(deconz_client, sensors):
     for key in list(sensors):
