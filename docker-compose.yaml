@@ -1,0 +1,26 @@
+version: "2"
+services: 
+  deconz-tapdial-relay:
+    image: python:3
+    container_name: deconz-tapdial-relay
+    restart: always
+    networks:
+      not:
+        ipv4_address: ${NOT_ADDRESS}
+      internal:
+    volumes:
+      - /opt/deconz-tapdial-relay:/opt/deconz-tapdial-relay
+    environment:
+      - MQTT_IP=${MQTT_HOST}
+      - MQTT_PORT=${MQTT_CONNECT_PORT}
+      - DECONZ_IP=${API_HOST}
+      - DECONZ_TOKEN=${API_TOKEN}
+    working_dir: /opt/deconz-tapdial-relay
+    command: /bin/bash start.sh
+networks:
+  not:
+    name: not
+    external: true
+  internal:
+    name: internal
+    external: true
